@@ -28,7 +28,7 @@ pipeline {
     stage('Push Docker Image') {
       steps {
         withCredentials(bindings: [usernamePassword(credentialsId: 'docker_private', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-          sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+          sh 'echo $DOCKER_PASS | docker login 192.168.20.20:5000 -u $DOCKER_USER --password-stdin'
           sh 'sudo docker push 192.168.20.20:5000/jenkins01:0.0.1'
         }
 
