@@ -21,7 +21,7 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t 192.168.20.20:5000/jenkins01:0.0.1 .'
+        sh 'sudo docker build -t 192.168.20.20:5000/jenkins01:0.0.1 .'
       }
     }
 
@@ -29,7 +29,7 @@ pipeline {
       steps {
         withCredentials(bindings: [usernamePassword(credentialsId: 'docker_private', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
           sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-          sh 'docker push 192.168.20.20:5000/jenkins01:0.0.1'
+          sh 'sudo docker push 192.168.20.20:5000/jenkins01:0.0.1'
         }
 
       }
