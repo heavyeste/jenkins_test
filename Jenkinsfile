@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/heavyeste/jenkins_test'
+        git(url: 'https://github.com/heavyeste/jenkins_test', branch: 'master')
       }
     }
 
